@@ -3,30 +3,28 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <script scr="application.js"></script>
     <title>Twittler: For Twits, By Twits.</title>
     <link rel="stylesheet" type = "text/css" href="JuliaStyles.css">
   </head>
   <body>
-    <header>
-
+    <header class="butts">
+      <h1>What's happening to the Twits you're following</h1>
     </header>
+    <h2>Who you're following</h2>
+    <p class = "following"></p>
+    <div class="feed">
+    </div>
+    <div class="userTimeline">
+    </div>
     <script>
-
       $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
-
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
-        }
-
+        $(.following).text(users)
       });
-
+      var clickHandler = function() {
+  alert('You clicked on me!');
+};
     </script>
+
   </body>
 </html>
