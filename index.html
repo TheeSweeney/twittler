@@ -12,25 +12,61 @@
     <header class="butts">
       <h1>Twittler! A place for twits!</h1>
     </header>
-    <h2>What's Happening</h2>
-    <button type="button" id='refresh'>Refresh Tweets</button>
+    <h2>What's Happening:</h2>
+    <button type="button" id="fresh">Fresh Tweets</button>
+    <button type="button" id="hist">Tweet History</button>
+    <button type="button" id='clear'>Clear History</button>
+    <button type="button" id='test'>test</button>
     <div class="feed">
     </div>
     <script>
       $(document).ready(function(){
         var $body = $('body');
-        
-        var refresh = function(){
-          var index = streams.home.length - 1;
+
+        var userHist = function(user){
+          var index = user.length - 1;
+          $(".feed").text("");
           while(index >= 0){
-            var tweet = streams.home[index];
+            var tweet = user[index];
             var $tweet = $('<div></div>');
-            $tweet.text('@' + tweet.user + ': ' + tweet.message);
-            $tweet.appendTo($body);
+            $tweet.html("@<a href='#' class ='" + tweet.user + "'>" +tweet.user +"</a>" + ': ' + tweet.message);
+            $tweet.appendTo($(".feed"));
             index -= 1;
           }
         }
-        $("#refresh").on("click", refresh)
+        
+        
+        var hist = function(){
+          var index = streams.home.length - 1;
+          $(".feed").text("");
+          while(index >= 0){
+            var tweet = streams.home[index];
+            var $tweet = $('<div></div>');
+            $tweet.html("@<a href='#' class ='" + tweet.user + "'>" +tweet.user +"</a>" + ': ' + tweet.message);
+            $tweet.appendTo($(".feed"));
+            index -= 1;
+          }
+        }
+        var fresh = function(){
+          var index = streams.home.length - 1;
+          $(".feed").text("");
+          while(index >= streams.home.length-10){
+            var tweet = streams.home[index];
+            var $tweet = $('<div></div>');
+            $tweet.html("@<a href='#' class ='" + tweet.user + "'>" +tweet.user +"</a>" + ': ' + tweet.message);
+            $tweet.appendTo($(".feed"));
+            index -= 1;
+          }
+        }
+
+        var clear = function(){
+          streams.home = [];
+          $(".feed").text("");
+        }
+        $("#hist").on("click", hist)
+        $("#clear").on("click", clear)
+        $("#fresh").on("click", fresh)
+        $("#test").on("click", userHist)
       });
     </script>
 
