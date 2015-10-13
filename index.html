@@ -22,19 +22,7 @@
     <script>
       $(document).ready(function(){
         var $body = $('body');
-
-        var userHist = function(user){
-          var index = user.length - 1;
-          $(".feed").text("");
-          while(index >= 0){
-            var tweet = user[index];
-            var $tweet = $('<div></div>');
-            $tweet.html("@<a href='#' class ='" + tweet.user + "'>" +tweet.user +"</a>" + ': ' + tweet.message);
-            $tweet.appendTo($(".feed"));
-            index -= 1;
-          }
-        }
-        
+  
         
         var hist = function(){
           var index = streams.home.length - 1;
@@ -63,10 +51,68 @@
           streams.home = [];
           $(".feed").text("");
         }
+
+        var doug = function(){
+          var index = streams.users.douglascalhoun.length - 1;
+          $(".feed").text("");
+          while(index >= 0){
+            var tweet = streams.users.douglascalhoun[index];
+            var $tweet = $('<div></div>');
+            $tweet.text("@" +tweet.user +': ' + tweet.message);
+            $tweet.appendTo($(".feed"));
+            index -= 1;
+          }
+        }
+        var shawn = function(){
+          var index = streams.users.shawndrost.length - 1;
+          $(".feed").text("");
+          while(index >= 0){
+            var tweet = streams.users.shawndrost[index];
+            var $tweet = $('<div></div>');
+            $tweet.text("@" +tweet.user +': ' + tweet.message);
+            $tweet.appendTo($(".feed"));
+            index -= 1;
+          }
+        }
+        var m = function(){
+          var index = streams.users.mracus.length - 1;
+          $(".feed").text("");
+          while(index >= 0){
+            var tweet = streams.users.mracus[index];
+            var $tweet = $('<div></div>');
+            $tweet.text("@" +tweet.user +': ' + tweet.message);
+            $tweet.appendTo($(".feed"));
+            index -= 1;
+          }
+        }
+        var sharks = function(){
+          var index = streams.users.sharksforcheap.length - 1;
+          $(".feed").text("");
+          while(index >= 0){
+            var tweet = streams.users.sharksforcheap[index];
+            var $tweet = $('<div></div>');
+            $tweet.text("@" +tweet.user +': ' + tweet.message);
+            $tweet.appendTo($(".feed"));
+            index -= 1;
+          }
+        }
+
         $("#hist").on("click", hist)
         $("#clear").on("click", clear)
         $("#fresh").on("click", fresh)
-        $("#test").on("click", userHist)
+        $("#test").on("click", doug)
+        $("a").on("click", function(){
+          var input = $(this).attr('class')
+          if(input == "douglascalhoun"){
+            return doug();
+            }else if(input =="shawndrost"){
+            return shawn();
+            }else if (input =="mracus"){
+            return m();
+            }else if (input =="sharksforcheap"){
+            return sharks();
+            }
+        });
       });
     </script>
 
