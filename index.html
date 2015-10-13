@@ -8,22 +8,30 @@
     <link rel="stylesheet" type = "text/css" href="JuliaStyles.css">
   </head>
   <body>
+    <img src="twits.jpeg"><img>
     <header class="butts">
-      <h1>What's happening to the Twits you're following</h1>
+      <h1>Twittler! A place for twits!</h1>
     </header>
-    <h2>Who you're following</h2>
-    <p class = "following"></p>
+    <h2>What's Happening</h2>
+    <button type="button" id='refresh'>Refresh Tweets</button>
     <div class="feed">
-    </div>
-    <div class="userTimeline">
     </div>
     <script>
       $(document).ready(function(){
-        $(.following).text(users)
+        var $body = $('body');
+        
+        var refresh = function(){
+          var index = streams.home.length - 1;
+          while(index >= 0){
+            var tweet = streams.home[index];
+            var $tweet = $('<div></div>');
+            $tweet.text('@' + tweet.user + ': ' + tweet.message);
+            $tweet.appendTo($body);
+            index -= 1;
+          }
+        }
+        $("#refresh").on("click", refresh)
       });
-      var clickHandler = function() {
-  alert('You clicked on me!');
-};
     </script>
 
   </body>
