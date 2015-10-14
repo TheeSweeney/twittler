@@ -34,23 +34,25 @@
             $tweet.appendTo($(".feed"));
             index -= 1;
           }
-        }
+        };
         var fresh = function(){
           var index = streams.home.length - 1;
           $(".feed").text("");
           while(index >= streams.home.length-10){
+            var time = new Date($.now());
+            time = time.getHours() + ":" + time.getMinutes() + ", " + time.getDate() + "/" + time.getMonth();
             var tweet = streams.home[index];
             var $tweet = $('<div></div>');
-            $tweet.html("@<a href='#' class ='" + tweet.user + "'>" +tweet.user +"</a>" + ': ' + tweet.message);
+            $tweet.html("@<a href='#' class ='" + tweet.user + "'>" +tweet.user +"</a>" + ': ' + tweet.message + " - " + time);
             $tweet.appendTo($(".feed"));
             index -= 1;
           }
-        }
+        };
         fresh();
         var clear = function(){
           streams.home = [];
           $(".feed").text("");
-        }
+        };
 
         var userHist = function(array){
           var index = array.length - 1;
@@ -62,14 +64,15 @@
             $tweet.appendTo($(".feed"));
             index -= 1;
           }
-        }
+        };
 
-        $("#hist").on("click", hist)
-        $("#clear").on("click", clear)
-        $("#fresh").on("click", fresh)
-        $("#test").on("click", userHist)
+        $("#hist").on("click", hist);
+        $("#clear").on("click", clear);
+        $("#fresh").on("click", fresh);
+        $("#test").on("click", userHist);
         $("a").on("click", function(){
-          var input = $(this).attr('class')
+          var input = $(this).attr('class');
+          alert($(this).attr('class'));
           userHist(streams.users[input]);
           
         });
