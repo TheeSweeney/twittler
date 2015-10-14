@@ -3,7 +3,7 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
-    <script scr="application.js"></script>
+    <script src="timeago.js"></script>
     <title>Twittler: For Twits, By Twits.</title>
     <link rel="stylesheet" type = "text/css" href="JuliaStyles.css">
   </head>
@@ -22,18 +22,19 @@
     <script>
       $(document).ready(function(){
         var $body = $('body');
-        
+        /* original function to convert time to readable format
         var parseTime = function(time){
           return time = time.getHours() + ":" + ('0' + time.getMinutes()).slice(-2) + ", " + time.getDate() + "/" + time.getMonth();
         }
+        */
         
         var hist = function(){
           var index = streams.home.length - 1;
           $(".feed").text("");
           while(index >= 0){
             var tweet = streams.home[index];
-            var time = tweet.created_at;
-            time = parseTime(time);
+            var time = $.timeago(tweet.created_at)
+            //time = parseTime(time);
             var $tweet = $('<div></div>');
             $tweet.html("@<a href='#' class ='" + tweet.user + "'>" +tweet.user +"</a>" + ': ' + tweet.message + " - " + time);
             $tweet.appendTo($(".feed"));
@@ -45,8 +46,8 @@
           $(".feed").text("");
           while(index >= streams.home.length-10){
             var tweet = streams.home[index];
-            var time = tweet.created_at;
-            time = parseTime(time);
+            var time = $.timeago(tweet.created_at);
+            //time = parseTime(time);
             var $tweet = $('<div></div>');
             $tweet.html("@<a href='#' class ='" + tweet.user + "'>" +tweet.user +"</a>" + ': ' + tweet.message + " - " + time);
             $tweet.appendTo($(".feed"));
