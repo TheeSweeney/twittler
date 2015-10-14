@@ -29,8 +29,10 @@
           $(".feed").text("");
           while(index >= 0){
             var tweet = streams.home[index];
+            var time = tweet.created_at;
+            time = time.getHours() + ":" + time.getMinutes() + ", " + time.getDate() + "/" + time.getMonth();
             var $tweet = $('<div></div>');
-            $tweet.html("@<a href='#' class ='" + tweet.user + "'>" +tweet.user +"</a>" + ': ' + tweet.message);
+            $tweet.html("@<a href='#' class ='" + tweet.user + "'>" +tweet.user +"</a>" + ': ' + tweet.message + " - " + time);
             $tweet.appendTo($(".feed"));
             index -= 1;
           }
@@ -39,9 +41,9 @@
           var index = streams.home.length - 1;
           $(".feed").text("");
           while(index >= streams.home.length-10){
-            var time = new Date($.now());
-            time = time.getHours() + ":" + time.getMinutes() + ", " + time.getDate() + "/" + time.getMonth();
             var tweet = streams.home[index];
+            var time = tweet.created_at;
+            time = time.getHours() + ":" + time.getMinutes() + ", " + time.getDate() + "/" + time.getMonth();
             var $tweet = $('<div></div>');
             $tweet.html("@<a href='#' class ='" + tweet.user + "'>" +tweet.user +"</a>" + ': ' + tweet.message + " - " + time);
             $tweet.appendTo($(".feed"));
