@@ -13,10 +13,12 @@
       <h1>Twittler! A place for twits!</h1>
     </header>
     <h2>What's Happening:</h2>
-    <button type="button" id="fresh">Fresh Tweets</button>
-    <button type="button" id="hist">Tweet History</button>
-    <button type="button" id='clear'>Clear History</button>
-    <button type="button" id='test'>test</button>
+    <div class= "buttons">
+      <button type="button" id="fresh">Fresh Tweets</button>
+      <button type="button" id="hist">Tweet History</button>
+      <button type="button" id='clear'>Clear History</button>
+      <button type="button" id='test'>test</button>
+    </div>
     <div class="feed">
     </div>
     <script>
@@ -28,8 +30,14 @@
         }
         */
         
-        var hist = function(){
-          var index = streams.home.length - 1;
+        var hist = function(usr){       //using if/else to try and set this up to but a coverall for all tweets and user tweets
+          var source = streams.home
+          if(usr[0] === undefined){  
+            source = streams.home
+          }else{                     //always returning the else statement, ever when no usr input
+            source = streams.users[usr];
+          }
+          var index = source.length - 1;
           $(".feed").text("");
           while(index >= 0){
             var tweet = streams.home[index];
@@ -49,7 +57,7 @@
             var time = $.timeago(tweet.created_at);
             //time = parseTime(time);
             var $tweet = $('<div></div>');
-            $tweet.html("@<a href='#' class ='" + tweet.user + "'>" +tweet.user +"</a>" + ': ' + tweet.message + " - " + time);
+            $tweet.html("@<a href='#' class = 'user' id ='" + tweet.user + "'>" +tweet.user +"</a>" + ': ' + tweet.message + " - " + time);
             $tweet.appendTo($(".feed"));
             index -= 1;
           }
@@ -65,8 +73,9 @@
           $(".feed").text("");
           while(index >= 0){
             var tweet = array[index];
+            var time = $.timeago(tweet.created_at)
             var $tweet = $('<div></div>');
-            $tweet.text("@" +tweet.user +': ' + tweet.message);
+            $tweet.html("@<a href='#' class ='" +tweet.user + "'>" + tweet.user + "</a>" + ': ' + tweet.message + " - " + time);
             $tweet.appendTo($(".feed"));
             index -= 1;
           }
@@ -76,9 +85,9 @@
         $("#clear").on("click", clear);
         $("#fresh").on("click", fresh);
         $("#test").on("click", userHist);
-        $("a").on("click", function(){
-          var input = $(this).attr('class');
-          alert($(this).attr('class'));
+        $(".user").on('click', function(){
+          var input = $(this).attr('id');
+          alert($(this).attr('id'));
           userHist(streams.users[input]);
           
         });
