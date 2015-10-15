@@ -10,12 +10,38 @@ img{
 	padding: 10px;
 	width:200px;
 	height:auto;
-
 }
-.userTimeLine{
-	background-color: blue;
-}
-
 .butts{
 	text-align: center;
 }
+#fresh, #hist, #clear {
+   border-top: 1px solid #bbc4c9;
+   background: #066eb3;
+   background: -webkit-gradient(linear, left top, left bottom, from(#7d72cf), to(#066eb3));
+   background: -webkit-linear-gradient(top, #7d72cf, #066eb3);
+   background: -moz-linear-gradient(top, #7d72cf, #066eb3);
+   background: -ms-linear-gradient(top, #7d72cf, #066eb3);
+   background: -o-linear-gradient(top, #7d72cf, #066eb3);
+   padding: 10px 20px;
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 13px;
+   font-family: Georgia, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+#fresh:hover, #hist:hover, #clear:hover {
+   border-top-color: #5837b3;
+   background: #5837b3;
+   color: #ccc;
+   }
+#fresh:active, #hist:active, #clear:active {
+   border-top-color: #1b435e;
+   background: #1b435e;
+   }
